@@ -2,108 +2,54 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Crypto Clicker Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Логотип CriptoLatarea</title>
     <style>
         body {
-            background-color: #0d0208;
-            color: #00ff41;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: #F8F9FA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .logo-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
         }
 
-        #stats {
-            font-size: 24px;
+        .logo-text {
+            color: #1A73E8;
+            font-size: 80px;
+            font-weight: 500;
             margin-bottom: 20px;
-            text-shadow: 0 0 10px #00ff41;
+            letter-spacing: -2px;
         }
 
-        #console {
-            width: 80%;
-            height: 200px;
-            background: rgba(0, 255, 65, 0.1);
-            border: 1px solid #00ff41;
-            padding: 10px;
-            overflow-y: hidden;
-            font-size: 14px;
-            margin-bottom: 20px;
-            box-shadow: inset 0 0 15px rgba(0, 255, 65, 0.2);
+        .logo-icon {
+            width: 100px;
+            height: 100px;
         }
 
-        .btn-mine {
-            background: transparent;
-            color: #00ff41;
-            border: 2px solid #00ff41;
-            padding: 15px 30px;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            font-weight: bold;
+        .logo-icon path {
+            fill: #1A73E8;
         }
-
-        .btn-mine:hover {
-            background: #00ff41;
-            color: #0d0208;
-            box-shadow: 0 0 20px #00ff41;
-        }
-
-        .log-entry { margin-bottom: 5px; }
     </style>
 </head>
 <body>
-
-    <div id="stats">Баланс: <span id="balance">0.00000000</span> BTC</div>
-    
-    <div id="console" id="logContainer">
-        </div>
-
-    <button class="btn-mine" onclick="mine()">Запустить хеширование</button>
-
-    <script>
-        let balance = 0;
-        const consoleBox = document.getElementById('console');
-        const balanceDisplay = document.getElementById('balance');
-
-        function addLog(text) {
-            const entry = document.createElement('div');
-            entry.className = 'log-entry';
-            entry.innerText = `[${new Date().toLocaleTimeString()}] ${text}`;
-            consoleBox.appendChild(entry);
+    <div class="logo-container">
+        <div class="logo-text">CriptoLatarea</div>
+        
+        <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 0C22.38 0 0 22.38 0 50s22.38 50 50 50s50-22.38 50-50S77.62 0 50 0zm0 92.5C26.56 92.5 7.5 73.44 7.5 50S26.56 7.5 50 7.5S92.5 26.56 92.5 50S73.44 92.5 50 92.5z"/>
             
-            // Автопрокрутка вниз
-            if (consoleBox.childNodes.length > 8) {
-                consoleBox.removeChild(consoleBox.firstChild);
-            }
-        }
-
-        function mine() {
-            // Имитация сложности: шанс найти блок
-            const chance = Math.random();
-            addLog("Выполнение алгоритма SHA-256...");
-
-            if (chance > 0.7) {
-                const reward = (Math.random() * 0.0001).toFixed(8);
-                balance = (parseFloat(balance) + parseFloat(reward)).toFixed(8);
-                balanceDisplay.innerText = balance;
-                addLog(`Успех! Найден блок. Награда: ${reward} BTC`);
-            } else {
-                addLog("Хеш отклонен сетью. Пробуем снова...");
-            }
-        }
-
-        // Фоновый «шум» для атмосферы
-        setInterval(() => {
-            if(Math.random() > 0.8) {
-                addLog("Синхронизация с нодами... OK");
-            }
-        }, 3000);
-    </script>
+            <path d="M50 7.5C64.6 19 72.5 33.7 72.5 50S64.6 81 50 92.5M50 7.5C35.4 19 27.5 33.7 27.5 50S35.4 81 50 92.5" fill="none" stroke="#1A73E8" stroke-width="2.5"/>
+            
+            <path d="M30 45h40M30 55h40M35 50h30M50 35v30"/>
+        </svg>
+    </div>
 </body>
 </html>
-
