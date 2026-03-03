@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto Clicker Game</title>
+    <style>
+        body {
+            background-color: #0d0208;
+            color: #00ff41;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #stats {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00ff41;
+        }
+
+        #console {
+            width: 80%;
+            height: 200px;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid #00ff41;
+            padding: 10px;
+            overflow-y: hidden;
+            font-size: 14px;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 15px rgba(0, 255, 65, 0.2);
+        }
+
+        .btn-mine {
+            background: transparent;
+            color: #00ff41;
+            border: 2px solid #00ff41;
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .btn-mine:hover {
+            background: #00ff41;
+            color: #0d0208;
+            box-shadow: 0 0 20px #00ff41;
+        }
+
+        .log-entry { margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+    <div id="stats">Баланс: <span id="balance">0.00000000</span> BTC</div>
+    
+    <div id="console" id="logContainer">
+        </div>
+
+    <button class="btn-mine" onclick="mine()">Запустить хеширование</button>
+
+    <script>
+        let balance = 0;
+        const consoleBox = document.getElementById('console');
+        const balanceDisplay = document.getElementById('balance');
+
+        function addLog(text) {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.innerText = `[${new Date().toLocaleTimeString()}] ${text}`;
+            consoleBox.appendChild(entry);
+            
+            // Автопрокрутка вниз
+            if (consoleBox.childNodes.length > 8) {
+                consoleBox.removeChild(consoleBox.firstChild);
+            }
+        }
+
+        function mine() {
+            // Имитация сложности: шанс найти блок
+            const chance = Math.random();
+            addLog("Выполнение алгоритма SHA-256...");
+
+            if (chance > 0.7) {
+                const reward = (Math.random() * 0.0001).toFixed(8);
+                balance = (parseFloat(balance) + parseFloat(reward)).toFixed(8);
+                balanceDisplay.innerText = balance;
+                addLog(`Успех! Найден блок. Награда: ${reward} BTC`);
+            } else {
+                addLog("Хеш отклонен сетью. Пробуем снова...");
+            }
+        }
+
+        // Фоновый «шум» для атмосферы
+        setInterval(() => {
+            if(Math.random() > 0.8) {
+                addLog("Синхронизация с нодами... OK");
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
+
